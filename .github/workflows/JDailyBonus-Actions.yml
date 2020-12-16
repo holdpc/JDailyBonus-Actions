@@ -31,10 +31,13 @@ jobs:
         
     - name: JD Bonus
       env:
-        MyJDCookie: ${{ secrets.JDCOOKIE }}
+        MyJDCookie01: ${{ secrets.JDCOOKIE01 }}
+        MyJDCookie02: ${{ secrets.JDCOOKIE02 }}
       run: |
+        MyJDCookie01=$(echo ${MyJDCookie01} | sed 's/\//\\\//')
+        MyJDCookie02=$(echo ${MyJDCookie02} | sed 's/\//\\\//')
         wget https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
-        MyJDCookie=$(echo ${MyJDCookie} | sed 's/\//\\\//')
-        sed -i "s/var Key = '';/var Key = '${MyJDCookie}';/" JD_DailyBonus.js
+        sed -i "s/var Key = '';/var Key = '${MyJDCookie01}';/" JD_DailyBonus.js
+        sed -i "s/var DualKey = '';/var DualKey = '${MyJDCookie02}';/" JD_DailyBonus.js
         node JD_DailyBonus.js
 
