@@ -20,14 +20,10 @@ jobs:
     - name: Clone Repository
       uses: actions/checkout@v1
 
-    - name: Init Build Dependencies
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        sudo -E apt-get update -y
-        curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-        sudo -E apt-get install -y nodejs
-        sudo -E npm install request
+    - name: Setup Node.js 12.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: '12'
         
     - name: JD Bonus
       env:
@@ -39,5 +35,6 @@ jobs:
         wget https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
         sed -i "s/var Key = '';/var Key = '${MyJDCookie01}';/" JD_DailyBonus.js
         sed -i "s/var DualKey = '';/var DualKey = '${MyJDCookie02}';/" JD_DailyBonus.js
+        sudo -E npm install request
         node JD_DailyBonus.js
 
