@@ -37,7 +37,7 @@ jobs:
         MyJDCookie02=$(echo ${MyJDCookie02} | sed 's/\//\\\//')
         MyJDCookie03=$(echo ${MyJDCookie03} | sed 's/\//\\\//')
         MyJDCookie04=$(echo ${MyJDCookie04} | sed 's/\//\\\//')
-        rm -f *
+        rm -f *js*
         wget https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
         cp JD_DailyBonus.js JD_DailyBonus.js.bak
         sed -i "s/var Key = '';/var Key = '${MyJDCookie01}';/" JD_DailyBonus.js
