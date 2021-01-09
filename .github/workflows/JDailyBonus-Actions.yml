@@ -29,12 +29,23 @@ jobs:
       env:
         MyJDCookie01: ${{ secrets.JDCOOKIE01 }}
         MyJDCookie02: ${{ secrets.JDCOOKIE02 }}
+        MyJDCookie03: ${{ secrets.JDCOOKIE03 }}
+        MyJDCookie04: ${{ secrets.JDCOOKIE04 }}
       run: |
+        sudo -E npm install request
         MyJDCookie01=$(echo ${MyJDCookie01} | sed 's/\//\\\//')
         MyJDCookie02=$(echo ${MyJDCookie02} | sed 's/\//\\\//')
+        MyJDCookie03=$(echo ${MyJDCookie03} | sed 's/\//\\\//')
+        MyJDCookie04=$(echo ${MyJDCookie04} | sed 's/\//\\\//')
+        rm -f *
         wget https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
+        cp JD_DailyBonus.js JD_DailyBonus.js.bak
         sed -i "s/var Key = '';/var Key = '${MyJDCookie01}';/" JD_DailyBonus.js
         sed -i "s/var DualKey = '';/var DualKey = '${MyJDCookie02}';/" JD_DailyBonus.js
-        sudo -E npm install request
+        node JD_DailyBonus.js
+        rm -f JD_DailyBonus.js
+        mv JD_DailyBonus.js.bak JD_DailyBonus.js
+        sed -i "s/var Key = '';/var Key = '${MyJDCookie03}';/" JD_DailyBonus.js
+        sed -i "s/var DualKey = '';/var DualKey = '${MyJDCookie04}';/" JD_DailyBonus.js
         node JD_DailyBonus.js
 
