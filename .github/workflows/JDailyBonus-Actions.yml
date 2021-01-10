@@ -1,6 +1,7 @@
 name: JDailyBonus-Actions
 
 on:
+  workflow_dispatch:
   push:
     branches: 
       - master
@@ -8,8 +9,6 @@ on:
       - '.github/workflows/**'
   schedule:
     - cron: '0 0 * * *'
-  watch:
-    types: [started]
 
 jobs:
   build:
