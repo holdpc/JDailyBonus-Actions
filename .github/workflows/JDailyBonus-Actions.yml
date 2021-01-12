@@ -39,11 +39,15 @@ jobs:
         wget https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
         cp JD_DailyBonus.js JD_DailyBonus.js.bak
         sed -i "s/var Key = '';/var Key = '${MyJDCookie01}';/" JD_DailyBonus.js
+        echo set MyJDCookie01 down;
         sed -i "s/var DualKey = '';/var DualKey = '${MyJDCookie02}';/" JD_DailyBonus.js
+        echo set MyJDCookie02 down;
         node JD_DailyBonus.js
         rm -f JD_DailyBonus.js
         mv JD_DailyBonus.js.bak JD_DailyBonus.js
         sed -i "s/var Key = '';/var Key = '${MyJDCookie03}';/" JD_DailyBonus.js
+        echo set MyJDCookie03 down;
         sed -i "s/var DualKey = '';/var DualKey = '${MyJDCookie04}';/" JD_DailyBonus.js
+        echo set MyJDCookie04 down;
         node JD_DailyBonus.js
 
